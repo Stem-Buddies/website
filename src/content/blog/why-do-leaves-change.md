@@ -1,6 +1,6 @@
 ---
 title: Why Do Leaves Change Colour in Autumn?
-pubDate: 17/10/2024
+pubDate: 25/10/2024
 author: "James Best and Rowan Best"
 tags:
   - Earth's Wonders

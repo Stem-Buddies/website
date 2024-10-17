@@ -1,6 +1,6 @@
 ---
 title: "Brilliant Boffins: Marie Curie - The Glowing Scientist"
-pubDate: 17/10/2024
+pubDate: 22/10/2024
 author: "James Best"
 tags:
   - Brilliant Boffins
