@@ -5,7 +5,7 @@ import SummaryCard from '../generic/SummaryCard.astro';
 import { Button } from '@eliancodes/brutal-ui';
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: (CollectionEntry<"blog"> | CollectionEntry<"brilliantBoffins">)
 }
 
 const { post } = Astro.props;
