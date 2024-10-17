@@ -10,9 +10,10 @@ interface Props {
 
 const { count } = Astro.props;
 
-const posts = await getCollection('blog').then((posts) =>
-  posts.reverse().slice(0, count ?? 3)
-);
+const blogPosts = await getCollection('blog');
+const boffinPosts = await getCollection('brilliantBoffins');
+
+const allPosts = [...blogPosts, ...boffinPosts].sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, count ?? 3);
 ---
 
 <section class='mt-8'>
@@ -28,6 +29,6 @@ const posts = await getCollection('blog').then((posts) =>
         <Button href='/blog/'>to blog</Button>
       </div>
     </div>
-    <BlogList posts={posts} />
+    <BlogList posts={allPosts} />
   </Card>
 </section>

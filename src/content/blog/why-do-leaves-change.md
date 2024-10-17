@@ -7,7 +7,7 @@ tags:
   - Plant Power
   - Bonkers Biology
 imgUrl: "../../assets/leaf-colors.jpg"
-description: Lorem markdownum longo os thyrso telum, continet servat fetus nymphae, vox nocte sedesque, decimo. Omnia esse, quam sive; conplevit illis indestrictus admovit dedit sub quod protectus, impedit non.
+description: Uncover the colourful secrets of autumn as we explore why leaves transform from green to a dazzling palette of reds, yellows, and oranges in this seasonal spectacular!
 layout: "../../layouts/BlogPost.astro"
 ---
 
