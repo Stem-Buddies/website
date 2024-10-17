@@ -1,5 +1,5 @@
 ---
-title: "Dorothy Hodgkin: The Crystal Mastermind"
+title: "Brilliant Boffins: Dorothy Hodgkin - The Crystal Mastermind"
 pubDate: 24/09/2024
 author: "James Best"
 tags:
@@ -13,7 +13,7 @@ description: "Discover the fascinating story of Dorothy Hodgkin, a brilliant sci
 layout: "../../layouts/BlogPost.astro"
 ---
 
-# Dorothy Hodgkin: The Crystal Mastermind
+# Brilliant Boffins: Dorothy Hodgkin - The Crystal Mastermind
 
 Description: Discover the fascinating story of Dorothy Hodgkin, a brilliant scientist who used crystals to solve some of medicine's biggest mysteries. This article is perfect for young science enthusiasts aged 7-10 who love learning about real-life superheroes.
 

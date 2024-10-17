@@ -7,6 +7,7 @@ tags:
   - Gravity Gurus
   - Energy Explorers
   - Flight Fanatics
+  - Marvellous Machines
 imgUrl: "../../assets/roller-coaster.webp"
 description: "Dive into the thrilling world of roller coasters and discover the amazing physics that make these rides so exciting! Perfect for young scientists aged 7-10 who love adventure and learning."
 layout: "../../layouts/BlogPost.astro"
