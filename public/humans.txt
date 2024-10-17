@@ -1,6 +1,30 @@
-## Brutal Theme ##
+/* TEAM */
+    Chief Space Cadet: James Best
+    Contact: hello@stembuddies.co.uk
+    Twitter: @EmilyStargazer
+    From: Bristol, UK
 
-All development & Content by Elian Van Cutsem
+    Curious Chemist: Rowan Best
 
-- email: hello@elian.codes
-- website: www.elian.codes
+
+/* THANKS */
+    All the brilliant young scientists out there!
+    Our fantastic STEM role models
+    The magic of curiosity
+    The wonder of discovery
+
+/* SITE */
+    Language: English (UK)
+    Doctype: HTML5
+    IDE: Neovim
+    Tools: React, Next.js, TailwindCSS
+
+/* MESSAGE */
+    Hey there, future scientists! Remember:
+    Stay curious, ask questions, and never stop exploring.
+    The world is full of wonders waiting to be discovered.
+    You might just be the one to make the next big breakthrough!
+
+    PS: Did you know that if you could fold a piece of paper 42 times,
+    it would reach the moon? Too bad paper can only be folded 7 times max!
+    But that doesn't mean you can't reach for the stars in other ways!
