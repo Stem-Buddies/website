@@ -6,17 +6,18 @@ interface Props {
 const navigationItems = [
   { name: 'Home', url: '/' },
   { name: 'Blog', url: '/blog/' },
+  { name: 'Brilliant Boffins', url: '/brilliant-boffins/' },
 ];
 
 const socialIcons = [
   {
     name: 'GitHub',
-    url: 'https://github.com/eliancodes/brutal',
+    url: 'https://github.com/Stem-Buddies',
     icon: 'i-uil-github',
   },
   {
     name: 'Twitter',
-    url: 'https://www.twitter.com/eliancodes',
+    url: 'https://www.twitter.com/jimgbest',
     icon: 'i-uil-twitter',
   },
   { name: 'RSS', url: '/feed.xml', icon: 'i-uil-rss' },
@@ -29,7 +30,7 @@ const { pageTitle } = Astro.props;
   {pageTitle && <h1 class='hidden'>{pageTitle}</h1>}
   <a href='/' title='Back to Home'>
   <div class="flex flex-row items-center">
-    <img src="stem-buddies-logo.png" class="w-16" />
+    <img src="/stem-buddies-logo.png" class="w-16" />
       <p class='righteous md:text-5xl'>STEM BUDDIES</p>
   </div>
   </a>
@@ -69,6 +70,7 @@ const { pageTitle } = Astro.props;
     <h2 class='hidden'>Mobile Navigation</h2>
     <ul>
       <li><a href='/blog/'>Blog</a></li>
+      <li><a href='/brilliant-boffins/'>Brilliant Boffins</a></li>
     </ul>
   </nav>
 </header>

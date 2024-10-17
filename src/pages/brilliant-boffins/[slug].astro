@@ -1,0 +1,21 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const brilliantBoffinsEntries = await getCollection('brilliantBoffins');
+  return brilliantBoffinsEntries.map((brilliantBoffinsPost) => ({
+    params: { slug: brilliantBoffinsPost.slug },
+    props: { brilliantBoffinsPost },
+  }));
+}
+
+interface Props {
+  brilliantBoffinsPost: CollectionEntry<'brilliantBoffins'>;
+}
+
+const { brilliantBoffinsPost } = Astro.props;
+const { Content } = await brilliantBoffinsPost.render();
+---
+
+<Content />

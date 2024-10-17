@@ -6,27 +6,61 @@ import { Pill } from '@eliancodes/brutal-ui';
 import { Button } from '@eliancodes/brutal-ui';
 import { Card } from '@eliancodes/brutal-ui';
 
-const builtWith = [
-  { name: 'Astro', url: 'https://astro.build/' },
-  { name: 'UnoCSS', url: 'https://uno.antfu.me/' },
-  {
-    name: 'Content Collections',
-    url: 'https://docs.astro.build/en/guides/content-collections/',
-  },
-  { name: 'RSS', url: 'https://docs.astro.build/en/guides/rss/' },
-  {
-    name: 'Sitemap',
-    url: 'https://docs.astro.build/en/guides/integrations-guide/sitemap/',
-  },
-  { name: 'Vercel', url: 'https://vercel.com' },
-  { name: 'TypeScript', url: 'https://www.typescriptlang.org/' },
+const stemLabels = [
+  { name: 'Space Explorers', url: '/tags/space-explorers' },
+  { name: 'Earth\'s Wonders', url: '/tags/earths-wonders' },
+  { name: 'Animal Kingdom', url: '/tags/animal-kingdom' },
+  { name: 'Plant Power', url: '/tags/plant-power' },
+  { name: 'Human Body', url: '/tags/human-body' },
+  { name: 'Marvellous Machines', url: '/tags/marvellous-machines' },
+  { name: 'Brilliant Boffins', url: '/tags/brilliant-boffins' },
+  { name: 'Eco Warriors', url: '/tags/eco-warriors' },
+  { name: 'Weather Watchers', url: '/tags/weather-watchers' },
+  { name: 'Maths Magic', url: '/tags/maths-magic' },
+  { name: 'Fizzy Physics', url: '/tags/fizzy-physics' },
+  { name: 'Curious Chemistry', url: '/tags/curious-chemistry' },
+  { name: 'Bonkers Biology', url: '/tags/bonkers-biology' },
+  { name: 'Awesome Astronomy', url: '/tags/awesome-astronomy' },
+  { name: 'Gadget Gurus', url: '/tags/gadget-gurus' },
+  { name: 'Coding Wizards', url: '/tags/coding-wizards' },
+  { name: 'Robotic Revolutionaries', url: '/tags/robotic-revolutionaries' },
+  { name: 'Dinosaur Detectives', url: '/tags/dinosaur-detectives' },
+  { name: 'Ocean Oddities', url: '/tags/ocean-oddities' },
+  { name: 'Miniature Marvels', url: '/tags/miniature-marvels' },
+  { name: 'Energy Explorers', url: '/tags/energy-explorers' },
+  { name: 'Food Science', url: '/tags/food-science' },
+  { name: 'Gravity Gurus', url: '/tags/gravity-gurus' },
+  { name: 'Light and Colour', url: '/tags/light-and-colour' },
+  { name: 'Sound Sensations', url: '/tags/sound-sensations' },
+  { name: 'Material Mysteries', url: '/tags/material-mysteries' },
+  { name: 'Time Travellers', url: '/tags/time-travellers' },
+  { name: 'Magnet Mania', url: '/tags/magnet-mania' },
+  { name: 'Bubbly Experiments', url: '/tags/bubbly-experiments' },
+  { name: 'Flight Fanatics', url: '/tags/flight-fanatics' },
 ];
+
+function getRandomStemLabels(count = 8) {
+  // Create a copy of the original array to avoid modifying it
+  const shuffled = [...stemLabels];
+
+  // Fisher-Yates shuffle algorithm
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+
+  // Return the first 'count' elements
+  return shuffled.slice(0, count);
+}
+
+// Example usage:
+const randomEightLabels = getRandomStemLabels();
 ---
 
 <Layout
   title='Home'
-  pageTitle='Brutal Theme | Home'
-  description='Brutal is a minimalistic, neobrutalism theme for Astro.'
+  pageTitle='STEM Buddies | Home'
+  description='STEM Buddies: Exploring Science, Technology, Engineering, and Maths!'
 >
   <main class='bg-pink p-6'>
     <MobileSocials />
@@ -36,14 +70,9 @@ const builtWith = [
         <Card>
           <div class='flex flex-col justify-between items-start gap-4'>
             <p class='mt-4 outfit text-2xl md:text-5xl lg:text-7xl'>
-              Brutal theme for <a
-                class='text-white'
-                target='_blank'
-                href='https://astro.build/'>Astro</a
-              >
-            </p>
+            Hiya, young scientists!
             <p class='mt-2 outfit text-xl md:text-3xl lg:text-5xl'>
-              A minimalistic, neobrutalism theme for Astro.
+              Ready to explore the amazing world of STEM? That's Science, Technology, Engineering, and Maths to you and me. Here at STEM Buddies, we're all about making learning fun and exciting!
             </p>
             <Button target={'_self'} href='/blog/'>
               Check out the blog &rarr;
@@ -54,11 +83,11 @@ const builtWith = [
       <div class='col-span-2'>
         <Card>
           <h2 class='text-2xl md:text-4xl lg:text-6xl mb-8 dm-serif'>
-            Brutal is built with
+            Explore These Exciting Topics!
           </h2>
           <ul class='flex gap-4 flex-wrap'>
             {
-              builtWith.map((item) => (
+              randomEightLabels.map((item) => (
                 <li>
                   <Pill>
                     <a
