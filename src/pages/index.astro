@@ -5,61 +5,45 @@ import MobileSocials from '@components/home/MobileSocials.astro';
 import { Pill } from '@eliancodes/brutal-ui';
 import { Button } from '@eliancodes/brutal-ui';
 import { Card } from '@eliancodes/brutal-ui';
+import { getCollection } from 'astro:content';
 
-const stemLabels = [
-  { name: 'Space Explorers', url: '/tags/space%20explorers' },
-  { name: 'Earth\'s Wonders', url: '/tags/earths%20wonders' },
-  { name: 'Animal Kingdom', url: '/tags/animal%20kingdom' },
-  { name: 'Plant Power', url: '/tags/plant%20power' },
-  { name: 'Human Body', url: '/tags/human%20body' },
-  { name: 'Marvellous Machines', url: '/tags/marvellous%20machines' },
-  { name: 'Brilliant Boffins', url: '/tags/brilliant%20boffins' },
-  { name: 'Eco Warriors', url: '/tags/eco%20warriors' },
-  { name: 'Weather Watchers', url: '/tags/weather%20watchers' },
-  { name: 'Maths Magic', url: '/tags/maths%20magic' },
-  { name: 'Fizzy Physics', url: '/tags/fizzy%20physics' },
-  { name: 'Curious Chemistry', url: '/tags/curious%20chemistry' },
-  { name: 'Bonkers Biology', url: '/tags/bonkers%20biology' },
-  { name: 'Awesome Astronomy', url: '/tags/awesome%20astronomy' },
-  { name: 'Gadget Gurus', url: '/tags/gadget%20gurus' },
-  { name: 'Coding Wizards', url: '/tags/coding%20wizards' },
-  { name: 'Robotic Revolutionaries', url: '/tags/robotic%20revolutionaries' },
-  { name: 'Dinosaur Detectives', url: '/tags/dinosaur%20detectives' },
-  { name: 'Ocean Oddities', url: '/tags/ocean%20oddities' },
-  { name: 'Miniature Marvels', url: '/tags/miniature%20marvels' },
-  { name: 'Energy Explorers', url: '/tags/energy%20explorers' },
-  { name: 'Food Science', url: '/tags/food%20science' },
-  { name: 'Gravity Gurus', url: '/tags/gravity%20gurus' },
-  { name: 'Light and Colour', url: '/tags/light%20and%20colour' },
-  { name: 'Sound Sensations', url: '/tags/sound%20sensations' },
-  { name: 'Material Mysteries', url: '/tags/material%20mysteries' },
-  { name: 'Time Travellers', url: '/tags/time%20travellers' },
-  { name: 'Magnet Mania', url: '/tags/magnet%20mania' },
-  { name: 'Bubbly Experiments', url: '/tags/bubbly%20experiments' },
-  { name: 'Flight Fanatics', url: '/tags/flight%20fanatics' },
-];
+// Get tags from actual blog posts
+async function getUniqueTags() {
+  const posts = await getCollection('blog', ({ data }) => {
+    if (import.meta.env.PROD) {
+      return !data.draft;
+    }
+    return true;
+  });
 
-function getRandomStemLabels(count = 8) {
-  // Create a copy of the original array to avoid modifying it
-  const shuffled = [...stemLabels];
+  const allTags = posts.flatMap(post => post.data.tags);
+  const uniqueTags = [...new Set(allTags)].sort();
 
-  // Fisher-Yates shuffle algorithm
+  return uniqueTags.map(tag => ({
+    name: tag,
+    url: `/tags/${tag.toLowerCase().replace(/ /g, '%20')}`,
+    count: allTags.filter(t => t === tag).length
+  }));
+}
+
+function getRandomTags(tags: Awaited<ReturnType<typeof getUniqueTags>>, count = 8) {
+  const shuffled = [...tags];
+
   for (let i = shuffled.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
   }
 
-  // Return the first 'count' elements
   return shuffled.slice(0, count);
 }
 
-// Example usage:
-const randomEightLabels = getRandomStemLabels();
+const allTags = await getUniqueTags();
+const randomEightTags = getRandomTags(allTags);
 ---
 
 <Layout
   title='Home'
-  pageTitle='STEM Buddies | Home'
+  pageTitle='STEM Buddies | Home'
   description='STEM Buddies: Exploring Science, Technology, Engineering, and Maths!'
 >
   <main class='bg-pink p-6'>
@@ -70,7 +54,8 @@ const randomEightLabels = getRandomStemLabels();
         <Card>
           <div class='flex flex-col justify-between items-start gap-4'>
             <p class='mt-4 outfit text-2xl md:text-5xl lg:text-7xl'>
-            Hiya, young scientists!
+              Hiya, young scientists!
+            </p>
             <p class='mt-2 outfit text-xl md:text-3xl lg:text-5xl'>
               Ready to explore the amazing world of STEM? That's Science, Technology, Engineering, and Maths to you and me. Here at STEM Buddies, we're all about making learning fun and exciting!
             </p>
@@ -87,16 +72,16 @@ const randomEightLabels = getRandomStemLabels();
           </h2>
           <ul class='flex gap-4 flex-wrap'>
             {
-              randomEightLabels.map((item) => (
+              randomEightTags.map((item) => (
                 <li>
                   <Pill>
                     <a
                       class='sanchez'
                       href={item.url}
-                      target='_blank'
-                      title={`Go to ${item.name}`}
+                      target='_self'
+                      title={`View ${item.count} posts about ${item.name}`}
                     >
-                      {item.name}
+                      {item.name} ({item.count})
                     </a>
                   </Pill>
                 </li>
@@ -111,9 +96,9 @@ const randomEightLabels = getRandomStemLabels();
             Join the STEM Buddies Adventure!
           </h2>
           <p class='poppins'>
-Get ready to blast off into the world of science, build amazing machines, and uncover nature's secrets. STEM is everywhere, and it's brilliant!
+            Get ready to blast off into the world of science, build amazing machines, and uncover nature's secrets. STEM is everywhere, and it's brilliant!
 
-Remember, the most important part of being a scientist is asking "Why?" and "How?". So, let's get curious and have some fun!
+            Remember, the most important part of being a scientist is asking "Why?" and "How?". So, let's get curious and have some fun!
           </p>
         </Card>
       </div>
