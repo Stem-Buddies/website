@@ -17,7 +17,7 @@ layout: "../../layouts/BlogPost.astro"
 
 ![Mae Jemison](../../assets/mae-jemison.png)
 
-## An Exciting Introduction
+## Introduction
 
 Have you ever gazed up at the twinkling stars and wondered what it would be like to soar among them? Well, Mae Jemison didn't just dream about it – she made it a reality! As the first African American woman to travel into space, she embarked on an incredible journey that shattered barriers and inspired countless others to reach for the stars.
 
@@ -58,4 +58,3 @@ Watch your rocket balloon blast off as the air rushes out of the balloon, propel
 ## Conclusion
 
 Mae Jemison's remarkable journey serves as a testament to the power of perseverance, determination, and the pursuit of knowledge. Her achievements have paved the way for future generations of explorers, scientists, and dreamers. So, the next time you gaze up at the stars, remember the inspiring story of Mae Jemison and let your imagination soar to new heights!
-

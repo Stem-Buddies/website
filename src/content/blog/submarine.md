@@ -19,7 +19,7 @@ layout: "../../layouts/BlogPost.astro"
 
 Are you ready to explore the depths of the ocean and uncover the mysteries of how submarines stay underwater? Get your diving gear ready because we're about to take a deep dive into the fizzy physics and material mysteries that make these marvellous machines buoyant!
 
-## An Exciting Introduction
+## Introduction
 
 Submarines are incredible vessels that can navigate the vast ocean depths, allowing us to explore and study the underwater world like never before. But have you ever wondered how these massive metal machines manage to stay submerged? It's all thanks to a fascinating scientific principle called buoyancy!
 

@@ -16,7 +16,7 @@ layout: "../../layouts/BlogPost.astro"
 
 ![Margaret Oakley Dayhoff](../../assets/margaret-dayhoff.png)
 
-## An Exciting Introduction
+## Introduction
 
 Have you ever wondered how scientists can read the secret code that makes up all living things? Well, get ready to meet Margaret Oakley Dayhoff, the amazing code-cracker who helped unlock the mysteries of life itself!
 
@@ -56,4 +56,3 @@ Instructions:
 Margaret Oakley Dayhoff was a true pioneer in the field of biology. Her work in cracking the code of life paved the way for countless discoveries and advancements in modern science. So, the next time you see a scientist studying DNA, remember the amazing code-cracking queen who helped make it all possible!
 
 If you're curious to learn more about Margaret Oakley Dayhoff and her groundbreaking work, there are plenty of books and online resources available. Who knows, maybe you'll be inspired to become a code-cracking scientist yourself one day!
-
