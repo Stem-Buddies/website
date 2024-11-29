@@ -17,7 +17,7 @@ layout: "../../layouts/BlogPost.astro"
 
 ![Magnet magic](../../assets/magnet-magic.png)
 
-## An Exciting Introduction
+## Introduction
 
 Have you ever wondered how those fridge magnets manage to hold up all your drawings and photos? Or how a simple magnet can make things move without even touching them? Well, get ready to dive into the fascinating world of magnets, where the laws of physics work their magic!
 
@@ -50,4 +50,3 @@ You can try different patterns and movements to see how the objects react. Can y
 ## Conclusion
 
 Magnets are truly magical, aren't they? With their invisible forces and ability to attract or repel objects, they open up a world of possibilities for exploration and discovery. So, why not continue your magnetic journey by trying out more experiments or researching how magnets are used in different fields? Who knows, you might just become a magnetic mastermind yourself!
-
