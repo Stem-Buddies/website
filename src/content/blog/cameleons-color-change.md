@@ -6,7 +6,7 @@ tags:
   - Animal Kingdom
   - Light and Colour
   - Bonkers Biology
-imgUrl: "../../assets/chameleons-color-change.png"
+imgUrl: "../../assets/cameleons-color-change.png"
 description: "Ever wondered how chameleons magically change colour? Get ready to unravel nature's most colourful mystery! In this fun-filled adventure, we'll explore the amazing science behind these rainbow reptiles and even try some colour-changing tricks of our own. Prepare to be amazed!"
 layout: "../../layouts/BlogPost.astro"
 ---
@@ -19,7 +19,7 @@ Have you ever seen a chameleon? 🦎 These quirky little lizards are famous for 
 
 Well, grab your goggles and lab coats, because we're about to go on a colourful adventure to uncover the secrets of these master camouflage artists. Get ready to be amazed by the bonkers biology behind chameleons' kaleidoscopic wardrobe changes!
 
-![Chameleon Colour Change](../../assets/chameleons-color-change.png)
+![Chameleon Colour Change](../../assets/cameleons-color-change.png)
 
 ## Time to Get Our Hands Dirty!
 
