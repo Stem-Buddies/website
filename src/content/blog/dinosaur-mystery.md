@@ -1,8 +1,19 @@
+---
+title: "The Mystery of Dinosaurs: Uncovering Nature's Giants 🦖"
+pubDate: 11/04/2025
+author: "James Best"
+tags:
+  - "Time Travellers"
+description: "Have you ever wondered what it would be like to travel back in time and meet real-life dinosaurs? 🕰️ These incredible creatures roamed our planet millions of years ago, and scientists are like dinosaur detectives, piecing together clues to unravel their mysteries! Just imagine – ginormous beasts taller than buildings, with teeth as big as bananas. How bonkers is that?"
+imgUrl: "../../assets/dinosaur-mystery.png"
+layout: "../../layouts/BlogPost.astro"
+---
+
 # The Mystery of Dinosaurs: Uncovering Nature's Giants 🦖
 
 ## Let's Discover Something Amazing!
 
-Have you ever wondered what it would be like to travel back in time and meet real-life dinosaurs? 🕰️ These incredible creatures roamed our planet millions of years ago, and scientists are like dinosaur detectives, piecing together clues to unravel their mysteries! Just imagine – ginormous beasts taller than buildings, with teeth as big as bananas. How bonkers is that? 
+Have you ever wondered what it would be like to travel back in time and meet real-life dinosaurs? 🕰️ These incredible creatures roamed our planet millions of years ago, and scientists are like dinosaur detectives, piecing together clues to unravel their mysteries! Just imagine – ginormous beasts taller than buildings, with teeth as big as bananas. How bonkers is that?
 
 ![A dinosaur skeleton](../../assets/dinosaur-skeleton.jpg)
 
