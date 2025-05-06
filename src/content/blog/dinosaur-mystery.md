@@ -15,7 +15,7 @@ layout: "../../layouts/BlogPost.astro"
 
 Have you ever wondered what it would be like to travel back in time and meet real-life dinosaurs? 🕰️ These incredible creatures roamed our planet millions of years ago, and scientists are like dinosaur detectives, piecing together clues to unravel their mysteries! Just imagine – ginormous beasts taller than buildings, with teeth as big as bananas. How bonkers is that?
 
-![A dinosaur skeleton](../../assets/dinosaur-skeleton.jpg)
+![A dinosaur skeleton](../../assets/dinosaur-mystery.png)
 
 ## Time to Get Our Hands Dirty!
 
