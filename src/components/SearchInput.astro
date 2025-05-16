@@ -1,16 +1,16 @@
-<section class="max-w-3xl mx-auto px-3">
+<section class="w-full max-w-6xl mx-auto px-3">
   <div class="searchBoxContainer">
     <input
       type="text"
       id="searchBox"
-      class="searchBox w-full px-2 py-1"
+      class="w-full px-2 py-1 border-2 border-black rounded-lg font-poppins"
       placeholder="Search..."
       data-test="search-input"
     />
   </div>
 
   <!-- Search Results -->
-  <div id="searchResults" class="searchResults lg:pl-8"></div>
+  <div id="searchResults" class="w-full pt-8 lg:pl-8 mt-12"></div>
 
   <!-- Search JS -->
   <script is:inline>
@@ -120,6 +120,9 @@
       const BODY_LENGTH = 100;
       const MAX_PAGES = 10;
 
+      // Debug: log results
+      console.log("Search results:", results);
+
       // Clear search result
       while (searchResults.firstChild)
         searchResults.removeChild(searchResults.firstChild);
@@ -127,17 +130,36 @@
       // Show message when results is empty
       if (!results.length) {
         let resultPage = document.createElement("div");
-        resultPage.className = "searchResultPage";
-        resultPage.innerHTML = 'No results found for query "' + query + '"';
+        resultPage.className =
+          "my-10 bg-white border-2 border-black rounded-2xl p-10 shadow-lg flex flex-col gap-5";
+        resultPage.innerHTML =
+          '<div class="poppins text-xl">No results found for query "' +
+          query +
+          '"</div>';
         searchResults.append(resultPage);
+        searchResults.style.display = "block";
         return;
       }
 
+      searchResults.style.display = "block";
+
       let instance = new Mark(document.querySelector("#searchResults"));
+      // Helper to strip markdown
+      function stripMarkdown(text) {
+        return text
+          .replace(/[#*_`~\[\]>!-]/g, "") // remove markdown symbols
+          .replace(/!\[[^\]]*\]\([^)]*\)/g, "") // remove images
+          .replace(/\[[^\]]*\]\([^)]*\)/g, "") // remove links
+          .replace(/\n+/g, " ") // newlines to space
+          .replace(/\s+/g, " ") // collapse whitespace
+          .trim();
+      }
+
       // Only show the ten first results
       results.slice(0, MAX_PAGES).forEach((result, idx) => {
         let resultPage = document.createElement("div");
-        resultPage.className = "searchResultPage";
+        resultPage.className =
+          "my-10 bg-white border-2 border-black rounded-2xl p-10 shadow-lg flex flex-col gap-5";
         let metadata = lunrResult[idx].matchData.metadata;
         let matchPosition =
           metadata[Object.keys(metadata)[0]].body.position[0][0];
@@ -147,16 +169,17 @@
             : 0;
 
         let resultTitle = document.createElement("a");
-        resultTitle.className = "searchResultTitle";
-        resultTitle.href = `/posts/${result.slug}`;
-        resultTitle.innerHTML = result.title;
+        resultTitle.className =
+          "text-[#fd2d78] text-3xl mb-4 block font-bold leading-tight no-underline transition-colors duration-150 hover:text-[#222] hover:underline";
+        resultTitle.href = `/blog/${result.slug}`;
+        resultTitle.innerText = stripMarkdown(result.title);
         resultPage.append(resultTitle);
 
         let resultBody = document.createElement("div");
-        resultBody.className = "searchResultBody";
-        resultBody.innerHTML = result.body.substr(
-          bodyStartPosition,
-          BODY_LENGTH
+        resultBody.className =
+          "bg-gray-100 mt-2 text-lg text-gray-700 font-normal leading-7";
+        resultBody.innerText = stripMarkdown(
+          result.body.substr(bodyStartPosition, BODY_LENGTH)
         );
         resultPage.append(resultBody);
         searchResults.append(resultPage);
@@ -173,32 +196,3 @@
     document.getElementById("searchBox")?.focus();
   </script>
 </section>
-
-<style>
-  #searchBox {
-    border: 2px solid black;
-    border-radius: 5px;
-  }
-
-  .searchResultPage {
-    padding: 15px 0;
-  }
-
-  .searchResultTitle {
-    color: #fd2d78 !important;
-    font-weight: bold;
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    display: block;
-  }
-
-  .searchResultBody {
-    margin-top: 0.5rem;
-    font-size: 0.875rem;
-  }
-
-  mark {
-    background-color: #ffe066;
-    padding: 0.125rem;
-  }
-</style>
