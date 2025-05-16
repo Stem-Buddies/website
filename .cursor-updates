@@ -5,3 +5,6 @@
 - Added search page and components
 - Updated navigation to include search link
 - Updated search page to use Default layout and match site's styling with consistent background and padding
+- Updated search results styling to match site's brutal-ui design with card shadows and consistent fonts
+- Fixed search results URLs to correctly link to blog posts
+- Updated search results to use site's font classes and card-shadow component
