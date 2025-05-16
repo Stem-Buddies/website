@@ -4,43 +4,44 @@ interface Props {
 }
 
 const navigationItems = [
-  { name: 'Home', url: '/' },
-  { name: 'Blog', url: '/blog/' },
-  { name: 'Brilliant Boffins', url: '/tags/brilliant%20boffins/' },
+  { name: "Home", url: "/" },
+  { name: "Blog", url: "/blog/" },
+  { name: "Brilliant Boffins", url: "/tags/brilliant%20boffins/" },
+  { name: "Search", url: "/search/" },
 ];
 
 const socialIcons = [
   {
-    name: 'GitHub',
-    url: 'https://github.com/Stem-Buddies',
-    icon: 'i-uil-github',
+    name: "GitHub",
+    url: "https://github.com/Stem-Buddies",
+    icon: "i-uil-github",
   },
   {
-    name: 'Twitter',
-    url: 'https://www.twitter.com/stem_buddies',
-    icon: 'i-uil-twitter',
+    name: "Twitter",
+    url: "https://www.twitter.com/stem_buddies",
+    icon: "i-uil-twitter",
   },
 ];
 
 const { pageTitle } = Astro.props;
 ---
 
-<header class='border-b-4 border-black flex justify-between p-6 items-center'>
-  {pageTitle && <h1 class='hidden'>{pageTitle}</h1>}
-  <a href='/' title='Back to Home'>
-  <div class="flex flex-row items-center">
-    <img src="/stem-buddies-logo.png" class="w-16" />
-      <p class='righteous md:text-5xl'>STEM BUDDIES</p>
-  </div>
+<header class="border-b-4 border-black flex justify-between p-6 items-center">
+  {pageTitle && <h1 class="hidden">{pageTitle}</h1>}
+  <a href="/" title="Back to Home">
+    <div class="flex flex-row items-center">
+      <img src="/stem-buddies-logo.png" class="w-16" />
+      <p class="righteous md:text-5xl">STEM BUDDIES</p>
+    </div>
   </a>
-  <nav class='hidden md:inline-block'>
-    <h2 class='hidden'>Navigation</h2>
-    <ul class='flex gap-8 poppins'>
+  <nav class="hidden md:inline-block">
+    <h2 class="hidden">Navigation</h2>
+    <ul class="flex gap-8 poppins">
       {
         navigationItems.map((item) => (
           <li>
             <a
-              class='text-lg font-medium hover:text-green hover:underline transition-all duration-150 ease-in-out'
+              class="text-lg font-medium hover:text-green hover:underline transition-all duration-150 ease-in-out"
               href={item.url}
               title={`Go to ${item.name}`}
             >
@@ -54,22 +55,22 @@ const { pageTitle } = Astro.props;
           <li>
             <a
               href={item.url}
-              class='hover:text-green hover:underline transition-all duration-150 ease-in-out'
-              target='_blank'
+              class="hover:text-green hover:underline transition-all duration-150 ease-in-out"
+              target="_blank"
               title={`'See @ElianCodes on ${item.name}`}
             >
-              <div class:list={[item.icon, 'w-6 h-6']} />
+              <div class:list={[item.icon, "w-6 h-6"]} />
             </a>
           </li>
         ))
       }
     </ul>
   </nav>
-  <nav class='md:hidden flex'>
-    <h2 class='hidden'>Mobile Navigation</h2>
+  <nav class="md:hidden flex">
+    <h2 class="hidden">Mobile Navigation</h2>
     <ul>
-      <li><a href='/blog/'>Blog</a></li>
-      <li><a href='/tags/brilliant%20boffins/'>Brilliant Boffins</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/tags/brilliant%20boffins/">Brilliant Boffins</a></li>
     </ul>
   </nav>
 </header>

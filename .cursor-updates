@@ -1,0 +1,6 @@
+# Cursor Updates
+
+- Added search functionality to the website with Lunr.js and Mark.js
+- Created search index generation script
+- Added search page and components
+- Updated navigation to include search link 
