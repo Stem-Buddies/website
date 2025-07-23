@@ -131,9 +131,9 @@
       if (!results.length) {
         let resultPage = document.createElement("div");
         resultPage.className =
-          "my-10 bg-white border-2 border-black rounded-2xl p-10 shadow-lg flex flex-col gap-5";
+          "my-4 bg-white border border-black rounded-lg p-6 shadow-brutal flex flex-col gap-3";
         resultPage.innerHTML =
-          '<div class="poppins text-xl">No results found for query "' +
+          '<div class="poppins text-lg">No results found for query "' +
           query +
           '"</div>';
         searchResults.append(resultPage);
@@ -159,7 +159,7 @@
       results.slice(0, MAX_PAGES).forEach((result, idx) => {
         let resultPage = document.createElement("div");
         resultPage.className =
-          "my-10 bg-white border-2 border-black rounded-2xl p-10 shadow-lg flex flex-col gap-5";
+          "my-4 bg-white border border-black rounded-lg p-6 shadow-brutal flex flex-col gap-4 transition-all duration-150 hover:shadow-brutal-lg";
         let metadata = lunrResult[idx].matchData.metadata;
         let matchPosition =
           metadata[Object.keys(metadata)[0]].body.position[0][0];
@@ -170,14 +170,14 @@
 
         let resultTitle = document.createElement("a");
         resultTitle.className =
-          "text-[#fd2d78] text-3xl mb-4 block font-bold leading-tight no-underline transition-colors duration-150 hover:text-[#222] hover:underline";
+          "text-black text-2xl md:text-3xl font-bold leading-tight no-underline dm-serif transition-colors duration-150 hover:text-[#fd2d78] hover:underline";
         resultTitle.href = `/blog/${result.slug}`;
         resultTitle.innerText = stripMarkdown(result.title);
         resultPage.append(resultTitle);
 
         let resultBody = document.createElement("div");
         resultBody.className =
-          "bg-gray-100 mt-2 text-lg text-gray-700 font-normal leading-7";
+          "text-gray-700 text-base poppins leading-relaxed";
         resultBody.innerText = stripMarkdown(
           result.body.substr(bodyStartPosition, BODY_LENGTH)
         );
