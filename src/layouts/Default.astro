@@ -18,9 +18,11 @@ const { title, description, classList, pageTitle, ogImage } = Astro.props;
 <html lang="en" class="h-full">
   <BaseHead ogImage={ogImage} title={title} description={description} />
 
-  <body class:list={[classList]}>
+  <body class:list={[classList, "min-h-screen flex flex-col"]}>
     <BaseNavigation {pageTitle} />
-    <slot />
+    <div class="flex-grow flex flex-col">
+      <slot />
+    </div>
     <BaseFooter />
   </body>
 </html>
