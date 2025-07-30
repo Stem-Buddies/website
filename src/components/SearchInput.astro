@@ -60,6 +60,8 @@
             this.pipeline.reset();
             this.ref("slug");
             this.field("title", { boost: 10 });
+            this.field("description", { boost: 5 });
+            this.field("tags", { boost: 3 });
             this.field("body");
             this.metadataWhitelist = ["position"];
             pagesIndex.forEach((page) => {
@@ -90,6 +92,9 @@
       if (searchBox === null) {
         return;
       }
+
+      let searchTimeout;
+      
       searchBox.addEventListener("keyup", function (event) {
         const searchResultsArea = document.querySelector("#searchResults");
         if (!searchResultsArea) return;
@@ -97,15 +102,20 @@
         const target = event.target;
         let query = target.value;
 
+        // Clear previous timeout
+        clearTimeout(searchTimeout);
+
         // Only trigger a search when 2 chars. at least have been provided
         if (query.length < 2) {
           searchResultsArea.style.display = "none";
           return;
         }
 
-        // Display search results
-        renderResults(search(query));
-        searchResultsArea.style.display = "block";
+        // Debounce search by 300ms
+        searchTimeout = setTimeout(() => {
+          renderResults(search(query));
+          searchResultsArea.style.display = "block";
+        }, 300);
       });
     };
 
@@ -117,7 +127,7 @@
       if (!searchBox) return;
 
       const query = searchBox.value;
-      const BODY_LENGTH = 100;
+      const SNIPPET_LENGTH = 150;
       const MAX_PAGES = 10;
 
       // Debug: log results
@@ -144,6 +154,7 @@
       searchResults.style.display = "block";
 
       let instance = new Mark(document.querySelector("#searchResults"));
+      
       // Helper to strip markdown
       function stripMarkdown(text) {
         return text
@@ -155,18 +166,68 @@
           .trim();
       }
 
+      // Helper to get better snippet around match
+      function getBestSnippet(text, query, length = SNIPPET_LENGTH) {
+        const cleanText = stripMarkdown(text);
+        const queryWords = query.toLowerCase().split(/\s+/);
+        
+        // Find the best match position
+        let bestPosition = 0;
+        let bestScore = 0;
+        
+        for (let i = 0; i < cleanText.length - length; i++) {
+          const snippet = cleanText.substr(i, length).toLowerCase();
+          let score = 0;
+          queryWords.forEach(word => {
+            if (snippet.includes(word)) score++;
+          });
+          if (score > bestScore) {
+            bestScore = score;
+            bestPosition = i;
+          }
+        }
+        
+        let snippet = cleanText.substr(bestPosition, length);
+        if (bestPosition > 0) snippet = "..." + snippet;
+        if (bestPosition + length < cleanText.length) snippet += "...";
+        
+        return snippet;
+      }
+
+      // Helper to determine match types
+      function getMatchTypes(metadata) {
+        const types = [];
+        for (const [term, fields] of Object.entries(metadata)) {
+          for (const field of Object.keys(fields)) {
+            if (!types.includes(field)) types.push(field);
+          }
+        }
+        return types;
+      }
+
       // Only show the ten first results
       results.slice(0, MAX_PAGES).forEach((result, idx) => {
         let resultPage = document.createElement("div");
         resultPage.className =
           "my-4 bg-white border border-black rounded-lg p-6 shadow-brutal flex flex-col gap-4 transition-all duration-150 hover:shadow-brutal-lg";
-        let metadata = lunrResult[idx].matchData.metadata;
-        let matchPosition =
-          metadata[Object.keys(metadata)[0]].body.position[0][0];
-        let bodyStartPosition =
-          matchPosition - BODY_LENGTH / 2 > 0
-            ? matchPosition - BODY_LENGTH / 2
-            : 0;
+        
+        const metadata = lunrResult[idx].matchData.metadata;
+        const matchTypes = getMatchTypes(metadata);
+
+        // Match type indicators
+        if (matchTypes.length > 0) {
+          let matchTypesDiv = document.createElement("div");
+          matchTypesDiv.className = "flex gap-2 mb-2";
+          
+          matchTypes.forEach(type => {
+            let badge = document.createElement("span");
+            badge.className = "px-2 py-1 text-xs rounded bg-pink text-black font-medium";
+            badge.innerText = type === "body" ? "content" : type;
+            matchTypesDiv.append(badge);
+          });
+          
+          resultPage.append(matchTypesDiv);
+        }
 
         let resultTitle = document.createElement("a");
         resultTitle.className =
@@ -175,13 +236,43 @@
         resultTitle.innerText = stripMarkdown(result.title);
         resultPage.append(resultTitle);
 
+        // Show description if available and different from title
+        if (result.description && result.description !== result.title) {
+          let resultDescription = document.createElement("div");
+          resultDescription.className = "text-gray-600 text-sm poppins italic";
+          resultDescription.innerText = stripMarkdown(result.description);
+          resultPage.append(resultDescription);
+        }
+
+        // Show tags if available
+        if (result.tags && result.tags.length > 0) {
+          let tagsDiv = document.createElement("div");
+          tagsDiv.className = "flex flex-wrap gap-1 mb-2";
+          result.tags.forEach(tag => {
+            let tagSpan = document.createElement("span");
+            tagSpan.className = "px-2 py-1 text-xs bg-gray-200 text-gray-700 rounded cursor-pointer hover:bg-gray-300 transition-colors";
+            tagSpan.innerText = tag;
+            
+            // Add click handler for tag filtering
+            tagSpan.addEventListener("click", function() {
+              const searchBox = document.querySelector("#searchBox");
+              if (searchBox) {
+                searchBox.value = tag;
+                searchBox.dispatchEvent(new Event("keyup"));
+              }
+            });
+            
+            tagsDiv.append(tagSpan);
+          });
+          resultPage.append(tagsDiv);
+        }
+
         let resultBody = document.createElement("div");
         resultBody.className =
           "text-gray-700 text-base poppins leading-relaxed";
-        resultBody.innerText = stripMarkdown(
-          result.body.substr(bodyStartPosition, BODY_LENGTH)
-        );
+        resultBody.innerText = getBestSnippet(result.body, query);
         resultPage.append(resultBody);
+        
         searchResults.append(resultPage);
 
         instance.mark(query);

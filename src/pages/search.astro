@@ -21,6 +21,17 @@ let seoDescription = "Search through articles and blog posts";
             <p class="poppins text-lg">
               Discover amazing articles about Science, Technology, Engineering, and Maths! Start typing to find exactly what you're looking for.
             </p>
+            <div class="mt-4 mb-6">
+              <p class="text-sm text-gray-600 mb-3 poppins">Popular topics:</p>
+              <div class="flex flex-wrap gap-2">
+                <button class="search-suggestion px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors poppins">Brilliant Boffins</button>
+                <button class="search-suggestion px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors poppins">Space Explorers</button>
+                <button class="search-suggestion px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors poppins">Curious Chemistry</button>
+                <button class="search-suggestion px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors poppins">Coding Wizards</button>
+                <button class="search-suggestion px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors poppins">Maths Magic</button>
+                <button class="search-suggestion px-3 py-1 text-sm bg-white border border-gray-300 rounded-full hover:bg-gray-50 transition-colors poppins">Energy Explorers</button>
+              </div>
+            </div>
             <SearchInput />
           </div>  
         </Card>
@@ -39,3 +50,20 @@ let seoDescription = "Search through articles and blog posts";
   integrity="sha512-4xUl/d6D6THrAnXAwGajXkoWaeMNwEKK4iNfq5DotEbLPAfk6FSxSP3ydNxqDgCw1c/0Z1Jg6L8h2j+++9BZmg=="
   crossorigin="anonymous"
   referrerpolicy="no-referrer"></script>
+
+<script is:inline>
+  document.addEventListener('astro:page-load', () => {
+    // Add click handlers for search suggestions
+    const suggestions = document.querySelectorAll('.search-suggestion');
+    suggestions.forEach(suggestion => {
+      suggestion.addEventListener('click', function() {
+        const searchBox = document.querySelector('#searchBox');
+        if (searchBox) {
+          searchBox.value = this.textContent;
+          searchBox.dispatchEvent(new Event('keyup'));
+          searchBox.focus();
+        }
+      });
+    });
+  });
+</script>
